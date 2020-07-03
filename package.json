@@ -1,0 +1,23 @@
+{
+  "name": "unit-tests-hw",
+  "version": "1.0.0",
+  "description": "Домашние работы для модуля Unit-тестирование",
+  "main": "comission.test.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Muhammadabumansur/unit-tests-hw.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Muhammadabumansur/unit-tests-hw/issues"
+  },
+  "homepage": "https://github.com/Muhammadabumansur/unit-tests-hw#readme",
+  "devDependencies": {
+    "jest": "26.1.0"
+  }
+}
