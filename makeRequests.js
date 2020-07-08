@@ -77,4 +77,4 @@ const makeRequests = (urls, maxRequests) => {
     });
 };
 
-module.exports = { makeRequests };
+module.exports = makeRequests;
