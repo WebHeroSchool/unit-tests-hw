@@ -8,7 +8,7 @@ const commission = (flyDate) => {
     const currentDate = Date.now();
     const dateDiff = flyDate - currentDate;
 
-    if (dateDiff < 0) {
+    if (dateDiff <= 0) {
         return 100;
     }
 
