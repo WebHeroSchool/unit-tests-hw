@@ -10,29 +10,24 @@ describe('Тестирование таймера', () => {
 	beforeEach(() => {
 		promise = new Promise((resolve, reject) => {
 			setTimeout(() => {
-				resolve('foo');
+				const response = 'foo';
+				resolve(response);
 			}, 2000);
 		});
 		
-
+		mockFnRes = jest.fn(() => promise);
+		//mockFnRej = jest.fn(() => reject('rej'));
 		ms = 4000;
-		rejectOnTimeout(promise, ms);
+		rejectOnTimeout(mockFnRes, ms);
 	});
 
 
-
-
-
-
-
-
-
-
-	// test('desription', () => {
-	//   expect(setTimeout).toHaveBeenCalled();
-	//   //expect(mockFn).toHaveBeenCalled();
-	//   //expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 200);
-	// });
+	test('desription', () => {
+	 // jest.runTimersToTime(5000);
+	  expect(mockFnRes).toEqual('foo');
+	  //expect(mockFn).toHaveBeenCalled();
+	  //expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 200);
+	});
 
 	// 	test('desription', () => {
 	// 	rejectOnTimeout(Promise.resolve(3), ms);
