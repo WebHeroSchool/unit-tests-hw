@@ -7,7 +7,6 @@ const { rejectOnTimeout } = require('../rejectOnTimeout');
 *
 * Класс 2: Промис исполниться не успевает за отведенное время, а тестируема функция возвращает собственную ошибку.
 
-промис без reject
 цепочка промисов
 в течение ms, нужно протестировать что выполняется в том числе и на последней милисекунде
 */
@@ -21,27 +20,32 @@ describe('Тестирование на промисе с простым пов�
 	let mockFn;
 
 	beforeEach(() => {
-		mockFn = jest.fn();
+		mockFn = jest.fn(() => 'test comleted');
 		resultResolve = 'promise fullfilled';
-		/*promise = new Promise((resolve, reject) => {
+		promise = new Promise((resolve, reject) => {
 			if(true) {
-				const timeOut = setTimeout(() => resolve(resultResolve), 1000);
+				const timeOut = setTimeout(() => resolve(mockFn), 1000);
 			} else {
 				const reason = new Error('important error');
 				reject(reason);
 			}
-		})*/
-		promise = new Promise((resolve) => resolve(mockFn));
+		})
+
+	/*	promise = new Promise((resolve) => {
+			const timeOut = setTimeout(() => resolve(mockFn), 3800);
+		});*/
+
 		ms = 4000;
 		testFunc = rejectOnTimeout(promise, ms);
 	});
 
-/*
+
 	test('Сценатий при котором исходный промис успевает завершиться прежде чем тестируемая функция вернет ошибку по таймауту. Прокрутим таймер на величину достаточную для завешения промиса, но недостаточную для завершению по таймауту. Проверяем величину таймаута перед граничным значение. Ожидаем resolve():', () => {
 		jest.runTimersToTime(ms-1);
   	return expect(testFunc).resolves.toBe(resultResolve);
+  	expect(resolve).toHaveBeenCalled(10);
 	});
-
+/*
 	test('Проверяем величину таймаута на граничном значении. Так же ожидаем resolve():', () => {
 		jest.runTimersToTime(ms);
 	  	return expect(testFunc).resolves.toBe(resultResolve);
@@ -55,11 +59,11 @@ describe('Тестирование на промисе с простым пов�
 
 
 
-	test('Тестируем вызов мока:', () => {
-		jest.runTimersToTime(ms-1);
-		return testFunc;
-	  	expect(mockFn).toHaveBeenCalled();
-	});
+	// test('Тестируем вызов мока:', () => {
+	// 	jest.runTimersToTime(ms);
+	// 	return testFunc;
+	//   	expect(mockFn).toHaveBeenCalledTimes(2);
+	// });
 
 	// 	test('desription', () => {
 	// 	rejectOnTimeout(Promise.resolve(3), ms);
