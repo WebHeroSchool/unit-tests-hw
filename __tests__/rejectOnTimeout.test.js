@@ -1,38 +1,42 @@
 const { rejectOnTimeout } = require('../rejectOnTimeout');
 
+/**
+* Классы эквивалентности:
+*
+* Класс 1: Сценарий при котором промис успевает исполниться за отведенное ему время и тестируемая функция возвращает resolve() исходного промиса.
+*
+* Класс 2: Промис исполниться не успевает за отведенное время, а тестируема функция возвращает собственную ошибку.
 
+промис без reject
+цепочка промисов
+в течение ms, нужно протестировать что выполняется в том числе и на последней милисекунде
+*/
 
-describe('Тестирование таймера', () => {
+describe('Тестирование на промисе с простым поведением.', () => {
 	jest.useFakeTimers();
 	let promise;
 	let ms;
-	let testVal;
+	let testFunc;
 
 	beforeEach(() => {
-
-
-	promise = new Promise((resolve, reject) => {
-		if(true) {
-			const timeOut = setTimeout(() => resolve('foo'), 1000)
-		} else {
-			const reason = new Error('important error')
-			reject(reason)
-		}
-	})
-
-		
-		//mockFnRes = jest.fn(() => promise);
-		//mockFnRej = jest.fn(() => reject('rej'));
+		promise = new Promise((resolve, reject) => {
+			if(true) {
+				const timeOut = setTimeout(() => resolve('promise fullfilled'), 1000);
+			} else {
+				const reason = new Error('important error');
+				reject(reason);
+			}
+		})
 		ms = 4000;
-		testVal = rejectOnTimeout(promise, ms);
+		testFunc = rejectOnTimeout(promise, ms);
 	});
 
 
-	test('test resolved', () => {
-		jest.runTimersToTime(3000);
+	test('Сценатий при котором исходный промис успевает завершиться прежде чем тестируемая функция вернет ошибку по таймауту. Прокрутим таймер на величину достаточную для завешения промиса, но недостаточную для ', () => {
+		jest.runTimersToTime(ms-1);
 		
 	  	//expect(data).toEqual('foo');
-	  	return expect(testVal).resolves.toBe('foo');
+	  	return expect(testFunc).resolves.toBe('promise fullfilled');
 
 
 	  //expect(mockFn).toHaveBeenCalled();
@@ -40,7 +44,7 @@ describe('Тестирование таймера', () => {
 	});
 
 	test('test rejected', () => {
-		jest.runTimersToTime(5000);
+		jest.runTimersToTime(ms);
 	  	return expect(testVal).rejects.toMatch('error');
 	});
 	// 	test('desription', () => {
