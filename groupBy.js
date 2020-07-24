@@ -24,8 +24,8 @@ const groupBy = (fn, obj) => {
 
         result[groupValue].push(obj[key]);
     }
-
     return result;
+
 };
 
 module.exports = { groupBy };
