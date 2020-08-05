@@ -1,10 +1,10 @@
 const MILLISECONDS_IN_DAY = 24 * 60 * 60 * 1000;
-
 /**
  * @param flyDate -- время в милисекундах
  * @return {number} commission
  */
 const commission = (flyDate) => {
+
     const currentDate = Date.now();
     const dateDiff = flyDate - currentDate;
 
@@ -25,6 +25,7 @@ const commission = (flyDate) => {
     }
 
     return 0;
+
 };
 
 module.exports = { commission };
