@@ -1,0 +1,22 @@
+{
+  "name": "unit-tests",
+  "version": "1.0.0",
+  "description": "Домашние работы для модуля Unit-тестирование",
+  "main": "commission.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmBorozdin/unit-tests-hw.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DmBorozdin/unit-tests-hw/issues"
+  },
+  "homepage": "https://github.com/DmBorozdin/unit-tests-hw#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}

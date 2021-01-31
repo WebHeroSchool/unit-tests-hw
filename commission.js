@@ -20,7 +20,7 @@ const commission = (flyDate) => {
         return 50;
     }
 
-    if (dateDiff < MILLISECONDS_IN_DAY * 10) {
+    if (dateDiff <= MILLISECONDS_IN_DAY * 10) {
         return 20;
     }
 
