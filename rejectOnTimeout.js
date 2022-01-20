@@ -13,8 +13,7 @@
 const rejectOnTimeout = (promise, ms) => new Promise((resolve, reject) => {
     const timer = setTimeout(
       () => reject('timeout_error'), ms);
-
-    () => promise.finally(() => clearTimeout(timer)).then(resolve).catch(reject);
+    promise.finally(() => clearTimeout(timer)).then(resolve).catch(reject);
 });
 
 module.exports = { rejectOnTimeout };
