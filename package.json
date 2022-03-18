@@ -4,7 +4,7 @@
   "description": "",
   "main": "capitalize.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -17,9 +17,10 @@
   },
   "homepage": "https://github.com/WebHeroSchool/unit-tests-hw#readme",
   "devDependencies": {
-    "jest": "^26.0.1"
+    "jest": "^27.4.0"
   },
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.25.0",
+    "node-fetch": "^2.6.0"
   }
 }
